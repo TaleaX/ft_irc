@@ -73,14 +73,18 @@ void Server::sendMsgToAll(Client &client, std::string message)
 
 void Server::sendMsgToAllInChannel(Client& client, std::string message)
 {
-	for (std::vector<Channel*>::iterator itChannel = client.getJoinedChannels().begin(); itChannel != client.getJoinedChannels().end(); ++itChannel)
-	{
-		for (std::vector<Client*>::iterator itClient = (*itChannel)->getClients().begin(); itClient != (*itChannel)->getClients().end(); ++itClient)
-		{
-			// if ((*itClient)->getNickname() != client.getNickname())
-				send((*itClient)->getSock(), message.c_str(), message.size(), 0);
-		}
-	}
+
+	// for (std::vector<std::string>::iterator itChannel = client.getJoinedChannels().begin(); itChannel != client.getJoinedChannels().end(); ++itChannel)
+	// {
+	// 	for (std::vector<std::strings>::iterator itNickname = getChannelByName())
+	// }
+	// {
+	// 	for (std::vector<Client>::iterator itClient = itChannel->getClients().begin(); itClient != itChannel->getClients().end(); ++itClient)
+	// 	{
+	// 		// if ((*itClient)->getNickname() != client.getNickname())
+	// 			send(itClient->getSock(), message.c_str(), message.size(), 0);
+	// 	}
+	// }
 }
 
 bool Server::parseReq(Client& client, std::string request)
@@ -119,9 +123,9 @@ void Server::broadcastEvent(Client& client, Channel& channel)
 void Server::sendUserList(Client& client, Channel& channel)
 {
 	std::string response = ":127.0.0.1 353 " + client.getNickname() + " = " + channel.getName() + " :";
-	for (std::vector<Client*>::iterator it = channel.getClients().begin(); it != channel.getClients().end(); ++it)
+    for (std::vector<std::string>::iterator it = channel.getClients().begin(); it != channel.getClients().end(); ++it)
 	{
- 		response += (*it)->getNickname();
+ 		response += *it;
 		if (it + 1 != channel.getClients().end())
 			response += " ";
 	}
@@ -245,6 +249,11 @@ void Server::startServer()
 			}
 		}
 	}
+}
+
+void		Server::removeClientFromList(Client& client, std::string channelName)
+{
+	
 }
 
 const char* Server::InvalidArgsException::what() const throw()

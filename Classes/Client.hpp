@@ -84,7 +84,7 @@ class Client
 			return this->_pollFd;
 		}
 
-		std::vector<Channel*>& getJoinedChannels() {
+		std::vector<std::string>& getJoinedChannels() {
 			return this->_joinedChannels;
 		}
 
@@ -108,7 +108,7 @@ class Client
 		bool _registered;
 
 		std::vector<std::string> _reqQueue;
-		std::vector<Channel*> _joinedChannels;
+		std::vector<std::string> _joinedChannels;
 };
 
 #endif

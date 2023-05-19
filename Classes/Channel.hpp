@@ -23,7 +23,7 @@ class Channel
 		const int get_channel_size() const {
 			return (this->channel_size);
 		}
-		std::vector<Client*>& getClients() {
+		std::vector<std::string>& getClients() {
 			return (this->_clients);
 		}
 		void set_topic(std::string topic){
@@ -46,6 +46,7 @@ class Channel
 		std::string getName() {
 			return this->_name;
 		}
+		Channel();
 		Channel(std::string name);
 		~Channel();
 
@@ -61,7 +62,7 @@ class Channel
 		int			num_clients;
 		int			channel_size;
 
-		std::vector<Client*> _clients;
+		std::vector<std::string> _clients;
 };
 
 #endif

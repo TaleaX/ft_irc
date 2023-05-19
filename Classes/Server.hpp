@@ -97,6 +97,7 @@ class Server {
 		Server(int port, int sock, sockaddr_in _saddr_in) : _sock(sock), _port(port), _saddr_in(_saddr_in){};
 		~Server();
 		void startServer();
+		void removeClientFromList(Client &client, std::string channelName);
 		void accept_client();
 
 		bool handleClientReq(Client& client);
